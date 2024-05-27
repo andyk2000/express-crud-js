@@ -1,6 +1,4 @@
-const { response } = require("express");
 const Users = require("../models/Users");
-// const { Sequelize } = require("sequelize");
 
 
 const createUser = async (request, response) => {
@@ -51,6 +49,7 @@ const updateUser = async (request, response) => {
         
     }
 }
+
 
 module.exports = {
     createUser,

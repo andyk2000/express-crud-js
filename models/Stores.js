@@ -1,5 +1,4 @@
-const { DataTypes, Deferrable } = require("sequelize");
-const Users = require("./Users");
+const { DataTypes} = require("sequelize");
 
 const Store = {
     id: {
@@ -22,5 +21,35 @@ const Store = {
 }
 
 module.exports = {
-    Store
+    initialise: (sequelize) => {
+        this.model = sequelize.define("store", Store, {timestamps: false});
+      },
+    
+      createStore: async (store) => {
+        return this.model.create(store);
+      },
+    
+      findStore: (query) => {
+        return this.model.findOne({
+          where: query,
+        });
+      },
+    
+      updateStore: (query, updatedValue) => {
+        return this.model.update(updatedValue, {
+          where: query,
+        });
+      },
+    
+      findAllStores: async () => {
+        const allStores = await this.model.findAll();
+        const data = JSON.stringify(allStores, null, 2);
+        return data;
+      },
+    
+      deleteStore: async (query) => {
+        return this.model.destroy({
+          where: query
+        });
+      }
 }
