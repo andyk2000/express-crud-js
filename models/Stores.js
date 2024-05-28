@@ -1,4 +1,4 @@
-const { DataTypes} = require("sequelize");
+const { DataTypes, where} = require("sequelize");
 
 const Store = {
     id: {
@@ -44,6 +44,14 @@ module.exports = {
       findAllStores: async () => {
         const allStores = await this.model.findAll();
         const data = JSON.stringify(allStores, null, 2);
+        return data;
+      },
+
+      findStoresByOwner: async (query) => {
+        const stores = await this.model.findAll({
+          where: query,
+        });
+        const data = JSON.stringify(stores, null, 2);
         return data;
       },
     

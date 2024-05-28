@@ -42,6 +42,8 @@ app.get("/stores", StoreController.getAllStores);
 app.delete("/stores/:id", StoreController.deleteStore);
 app.get("/stores/:id", StoreController.getByID);
 app.put("/stores/:id", StoreController.updateStore);
+//get store by owner_id
+app.get("/stores/owner/:id", StoreController.getStoreByOwner);
 
 
 app.listen(config.port, () => {
